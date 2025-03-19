@@ -35,6 +35,17 @@ print(colors[:])
 c1, _,  c2, c3, _, _  = colors
 print(c1, c2, c3)
 
+colors = ['red', 'blue', 'green']
+cities = ['서울', '부산', '인천', '대전', '강릉', '논산', '포항']
+combi = [colors, cities]
+print(combi)
+print(combi[1][2]) # 인천
+#print(combi[2][3]) # 에러발생
+bigcombi = [combi, [0,2,7]]
+print(bigcombi)
+print(len(bigcombi))
+print(bigcombi[0][1][2]) #인천
+print(f'{bigcombi[1][1]}') #2
 
 # 퀴즈
 first = ["egg", "salad", "bread", "soup", "canafe"]
@@ -42,7 +53,7 @@ second = ["fish", "lamb", "pork", "beef", "chicken"]
 third = ["apple", "banana", "orange", "grape", "mango"]
 
 order = [first, second, third]
-john = [order[0][:-2], second[1::3], third[0]]
-del john[2]
-john.extend([order[2][0:1]])
+john = [order[0][:-2], second[1::3], third[0]] # john = [soup, [lamb, chicken], apple]
+del john[2]    # john = [soup, [lamb, chicken]]
+john.extend([order[2][0:1]])    # john = [soup, [lamb, chicken], [apple]]
 print(john)
