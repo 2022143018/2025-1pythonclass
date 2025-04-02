@@ -1,0 +1,28 @@
+SELECT COUNT(도시) AS 전체_도시_수, COUNT(DISTINCT 도시) AS 고유_도시_수
+FROM 고객;
+
+
+
+SELECT YEAR(주문일) AS 주문년도, COUNT(*) AS 주문건수
+FROM 제품
+GROUP BY 주문년도
+ORDER BY 주문년도;
+
+
+
+SELECT 제품명
+	, COUNT(*) AS 재고합
+FROM 제품
+WHERE 제품명 LIKE '%아이스크림%'
+GROUP BY 제품명;
+
+
+SELECT 
+    CASE 
+        WHEN 마일리지 >= 50000 THEN 'VIP고객'
+        ELSE '일반고객'
+    END AS 고객구분,
+    COUNT(*) AS 고객수,
+    AVG(마일리지) AS 평균마일리지
+FROM 고객
+GROUP BY 고객구분;
