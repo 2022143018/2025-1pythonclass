@@ -36,9 +36,10 @@ for n in range(1,MAXNUM):
 
 
 # 최대값, 평균, 중앙값, 표준편차, 최빈값
-
+nmax = 0
 print(f'최대값 = {max(ncountl)}')
 print(f'평균 ={statistics.mean(ncountl): 5f}')
+print(f'해당숫자 ={ncountl.index(7)}')
 print(f'중앙값 ={statistics.median(ncountl)}')
 print(f'표준편차 ={statistics.stdev(ncountl): 5f}')
 # print(f'최빈값 ={statistics.mode(ncountl)}')
@@ -68,3 +69,34 @@ print(f'표준편차 ={np.std(ncounta): 5f}')
 
 end = time.time()
 print(f'{end - start: .5f}초가 걸렸습니다')
+
+# 1부터 100까지의 숫자중 우박수 단계수가 첫번째, 두번째, 세번째 큰 숫자와 단계수 출력
+# 리스트,  numpy 배열 둘다 구하기
+# 커밋메세지: 빅3구하기
+
+import numpy as np
+
+def collatz_steps(n):
+    steps = 0
+    while n != 1:
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3 * n + 1
+        steps += 1
+    return steps
+
+collatz_list = [(i, collatz_steps(i)) for i in range(1, 101)]
+
+collatz_list_sorted = sorted(collatz_list, key=lambda x: x[1], reverse=True)
+
+top3_list = collatz_list_sorted[:3]
+
+top3_array = np.array(top3_list)
+
+print("리스트 기반 상위 3개:")
+for rank, (num, steps) in enumerate(top3_list, start=1):
+    print(f"{rank}위: 숫자 {num}, 단계수 {steps}")
+
+print("\nNumPy 배열 출력:")
+print(top3_array)
